@@ -1,5 +1,8 @@
 package com.tristan.games.revisitinghorror;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.tristan.games.revisitinghorror.events.GameEventManager;
+
 public class Player {
 	private String _name;
 	private String _keyAbility;
@@ -29,4 +32,19 @@ public class Player {
 		this._hairColor = value;
 	}
 
+	public Player(Texture texture, final String actorName, GameEventManager gameEventManager) {
+		this.initialize(texture, gameEventManager);
+		
+		this.addEventHandlers(actorName);
+	}
+
+	private void initialize(Texture texture, GameEventManager gameEventManager) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void addEventHandlers(String actorName) {
+		// TODO Auto-generated method stub
+		
+	}
 }
