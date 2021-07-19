@@ -16,7 +16,11 @@ import com.tristan.games.revisitinghorror.Player;
 import com.tristan.games.revisitinghorror.RevisitingHorror;
 import com.tristan.games.revisitinghorror.assetManager.RevisitingHorrorAssetDescriptor;
 import com.tristan.games.revisitinghorror.events.GameEventManager;
+import com.tristan.games.revisitinghorror.events.game.GameEventAbstract;
+import com.tristan.games.revisitinghorror.events.game.GameEventPrepareToAttack;
 import com.tristan.games.revisitinghorror.models.Opponent;
+import com.tristan.games.revisitinghorror.models.ui.OnDefense;
+import com.tristan.games.revisitinghorror.models.ui.PrepareToAttack;
 
 public class GameScreen implements Screen {
 	private final AssetManager _assetManager;
@@ -30,6 +34,12 @@ public class GameScreen implements Screen {
 	private Stage _gameScreenStage;
 	private Viewport _viewport;
 	private GameEventManager _gameEventManager;
+	private int _playerAttackFactor = 0;
+	private GameEventOnDefense _gameEventOnDefense;
+	private GameEventPrepareToAttack _gameEventPrepareToAttack;
+	private PrepareToAttack _prepareToAttack;
+	private OnDefense _onDefense;
+	
 
 	public GameScreen(final RevisitingHorror revisitingHorrorGame) {
 			this._startCountDown = true;
@@ -84,6 +94,24 @@ public class GameScreen implements Screen {
 		this._assetManager.load(RevisitingHorrorAssetDescriptor.battleScene);
 		this._assetManager.finishLoading();
 	}
+	
+	private void prioritizeAttack() {
+		Gdx.app.log("GameScreen", "In startCountdown(), showing, 'Prepare To Attack' message.");
+		
+		// 1. roll dice to calculate who goes first
+		int playerDice = (int) (Math.random() * 100);
+		
+		if (playerDice + this._playerAttackFactor  > 49) {
+			this._gameEventPrepareToAttack = new GameEventPrepareToAttack(this._prepareToAttack.getGameEventType());
+			
+			this._gameEventManager.broadcastEvent(_gameEventPrepareToAttack);
+		} else {
+			
+			this._gameEventOnDefense = new GameEventOnDefense(this._onDefense.getGameEventType());
+			
+			this._gameEventManager.broadcastEvent(_gameEventOnDefense);
+		}
+	}
 
 	@Override
 	public void render(float delta) {
@@ -133,5 +161,9 @@ public class GameScreen implements Screen {
 		this._gameScreenStage.dispose();
 
 	}
+	
+	public void broadcastEvent(GameEventAbstract gameEvent) {
 
+}
+	
 }

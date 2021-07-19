@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.tristan.games.revisitinghorror.events.GameEventListener;
 import com.tristan.games.revisitinghorror.events.GameEventManager;
+import com.tristan.games.revisitinghorror.events.game.GameEventAbstract;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.Gdx;
@@ -183,5 +185,17 @@ public class Player extends Actor implements GameEventListener {
 		}
 
 //						Gdx.app.log("Player", "Player position: " + this.getSprite().getX());
+	}
+
+	@Override
+	public void onEvent(GameEventAbstract gameEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean handle(Event event) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

@@ -1,5 +1,5 @@
 package com.tristan.games.revisitinghorror.events;
 
-public interface GameEventListener {
+public interface GameEventListener extends RevistingHorrorEventListener{
 
 }

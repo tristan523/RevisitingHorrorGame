@@ -10,10 +10,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tristan.games.revisitinghorror.screens.GameScreen;
 import com.tristan.games.revisitinghorror.screens.MainMenuScreen;
+import com.tristan.games.revisitinghorror.screens.ShopScreen;
 
 public class RevisitingHorror extends Game {
 	public SpriteBatch _spriteBatch;
 	public BitmapFont horrorTitlefont;
+	public BitmapFont AncientYellowFont;
 	
 	// Constants
 	public static final int SCREEN_WIDTH = 1200;
@@ -29,6 +31,7 @@ public class RevisitingHorror extends Game {
 	public void create () {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		horrorTitlefont = new BitmapFont(Gdx.files.internal("fonts/parchment.fnt"));
+		AncientYellowFont = new BitmapFont(Gdx.files.internal("fonts/ancient_yellow.fnt"));
 		
 		_spriteBatch = new SpriteBatch();
 		this.setScreen(new MainMenuScreen(this));
@@ -44,6 +47,7 @@ public class RevisitingHorror extends Game {
 	public void dispose () {
 		_spriteBatch.dispose();
 		horrorTitlefont.dispose();
+		AncientYellowFont.dispose();
 	}
 
 	public void gotoMainMenuScreen () {
@@ -54,5 +58,11 @@ public class RevisitingHorror extends Game {
 		GameScreen gameScreen = new GameScreen(this);
 		
 		this.setScreen(gameScreen);
+	}
+	
+	public void gotoShopScreen() {
+		ShopScreen shopScreen = new ShopScreen(this);
+		
+		this.setScreen(shopScreen);
 	}
 }
