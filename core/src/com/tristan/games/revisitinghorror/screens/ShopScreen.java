@@ -1,6 +1,7 @@
 package com.tristan.games.revisitinghorror.screens;
 
 import java.io.BufferedReader;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -140,8 +141,24 @@ public ShopScreen(final RevisitingHorror revisitingHorrorGame) {
 		
 		Gdx.app.log("ShopScreen",
 				"In collectDailyAward(), playerInventory - totalGold: " + this._playerinventory.getTotalGold());
-		
-	}
+		try {
+			Writer userDataWriter = Files.newBufferedWriter(Paths.get("../data/user_data.json"));
+			
+			if(userDataWriter != null) {
+				this._gson.toJson(this._playerinventory, userDataWriter);
+				
+				Gdx.app.log("ShopScreen",
+						"In collectDailyAward(), finished updating JSON file for userData totalGold:" + this._playerinventory.getTotalGold());
+			} else {
+				Gdx.app.error("ShopScreen", "In collectDailyAward(), could not find user Data.");
+			}
+			
+			userDataWriter.close();
+	} catch(Exception ex) {
+		Gdx.app.log("ShopScreen", "In initialize(), system ran into exception:" + ex.getMessage());
+			}
+		}
+	
 
 	@Override
 	public void render(float delta) {

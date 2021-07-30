@@ -52,6 +52,8 @@ public class RevisitingHorror extends Game {
 
 	public void gotoMainMenuScreen () {
 		MainMenuScreen mainMenuScreen = new MainMenuScreen(this);
+		
+		this.setScreen(mainMenuScreen);
 	}
 	
 	public void gotoGameScreen() {

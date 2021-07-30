@@ -20,7 +20,7 @@ public class GameEventManager {
 		// TODO Auto-generated method stub
 	}
 	
-	public void broadcastEvent(GameEventAbstract gameEvent) {
+	public void broadcastEvent1(GameEventAbstract gameEvent) {
 		
 	}
 	public void addImageEventListener(ImageBase image) {
@@ -43,5 +43,27 @@ public class GameEventManager {
 				this._imageEventListeners.add(image);
 			}
 		}
+	
+	public void broadcastEvent(GameEventAbstract gameEvent) {
+		
+		Gdx.app.log("GameEventManager",
+				String.format("In broadcastEvent(), dispatching event notifications for game event type: %s.",
+						gameEvent.getGameEventType()));
+		for (int counter = 0; counter < this._imageEventListeners.size(); counter++) {
+			if (gameEvent.getGameEventType() == this._imageEventListeners.get(counter).getGameEventType()) {
+				Gdx.app.log("GameEventManager",
+						String.format("In broadcastEvent(), dispatching image event notification for: %s.",
+								this._imageEventListeners.get(counter).getClass().toString()));
+
+				this._imageEventListeners.get(counter).onEvent(gameEvent);
+				
+				if (gameEvent.isHandled() == true) {
+					Gdx.app.log("GameEventManager", "In broadcastEvent(), event handled.  Now, stopping event");
+
+					gameEvent.stop();
+				}
+			}
+		}
+	}
 	}
 

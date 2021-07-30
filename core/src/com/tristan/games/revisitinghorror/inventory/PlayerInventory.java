@@ -8,6 +8,7 @@ public class PlayerInventory extends ImageBase{
 	private int _totalGold;
 	private GameEventManager _gameEventManager;
 	//private GameEventPlayerInventory _playerInventoryEvent;
+	public char[] getTotalGold;
 	
 	public PlayerInventory(Texture texture, GameEventManager gameEventManager) {
 		super(texture);

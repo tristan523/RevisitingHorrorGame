@@ -12,6 +12,11 @@ public class Asset {
 	public static final String EXIT_BUTTON = "images/exit button.png";
 	public static final String GOLD_TOTAL_BACKGROUND = "images/gold total background.png";
 	public static final String PLAY_BUTTON = "images/play button.png";
+	public static final String ONE = "images/one.png";
+	public static final String TWO = "images/two.png";
+	public static final String THREE = "images/three.png";
+	public static final String FOUR = "images/four.png";
+	public static final String FIVE = "images/five.png";
 	private Asset() {
 		
 	}
